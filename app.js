@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const app = new Koa()
+const cors = require('koa2-cors');
 const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
@@ -12,6 +13,11 @@ const db = require('./config/database')
 db()
 // error handler
 onerror(app)
+
+// CORS
+app.use(cors({
+  origin: '*',
+}));
 
 // middlewares
 app.use(bodyparser({
